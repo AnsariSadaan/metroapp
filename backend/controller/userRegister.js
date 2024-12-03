@@ -3,7 +3,7 @@ import bcryptjs from 'bcryptjs';
 
 const userRegister = async (req, res) => {
     try {
-        const { name, age, qualification, email, password } = req.body;
+        const { name, email, password } = req.body;
 
         // Validate required fields
         if (!name || !email || !password) {
@@ -29,9 +29,7 @@ const userRegister = async (req, res) => {
         const userPayload = {
             name,
             email,
-            password: hashPassword,
-            age: age || null, // Allow null if not provided
-            qualification: qualification || null // Allow null if not provided
+            password: hashPassword
         };
 
         // Save the user to MongoDB

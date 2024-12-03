@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './../App.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { loginUser } from '../api';
 
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     // useEffect(() => {
     //     if (isLoggedIn === true) {
@@ -22,7 +23,7 @@ const Login = () => {
         try {
             const response = await loginUser(formData);
             localStorage.setItem('token', response.data.token); // Store token
-            dispatch(authActions.login());
+            // dispatch(authActions.login());
             alert('Login successful');
             navigate('/');
         } catch (error) {
@@ -31,8 +32,8 @@ const Login = () => {
     };
 
 
-  return (
-    <div className="flex items-center justify-center min-h-screen">
+    return (
+        <div className="flex items-center justify-center min-h-screen">
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold text-center text-gray-700">Login</h2>
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -70,13 +71,13 @@ const Login = () => {
                 </form>
                 <p className="text-sm text-center text-gray-600">
                     Don't have an account?
-                    <Link  to="/register" className="text-blue-500 hover:underline">
+                    <Link to="/register" className="text-blue-500 hover:underline">
                         Sign Up
                     </Link>
                 </p>
             </div>
         </div>
-  )
+    )
 }
 
 export default Login

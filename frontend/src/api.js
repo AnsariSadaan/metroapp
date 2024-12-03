@@ -1,4 +1,3 @@
-// src/api.js
 import axios from 'axios';
 
 export const API_URL = 'http://localhost:3000/api';
@@ -22,3 +21,16 @@ export default api; // Export api as the default export
 // Auth API requests
 export const registerUser = (userData) => api.post('/register', userData);
 export const loginUser = (userData) => api.post('/login', userData);
+
+// Ticket API requests
+export const purchaseTicket = (ticketData) => api.post('/tickets', ticketData);
+export const fetchUserTickets = (userId) => api.get(`/tickets/user/${userId}`);
+
+// Payment API requests
+
+export const initiatePayment = (paymentData) => api.post('/payments/initiate', paymentData);
+
+export const verifyPayment = (paymentId, verificationData) => api.post(`/payments/verify/${paymentId}`, verificationData);
+
+// User API requests
+export const fetchUserProfile = () => api.get('/profile');
