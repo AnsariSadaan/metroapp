@@ -28,7 +28,7 @@ export const fetchUserTickets = (userId) => api.get(`/tickets/user/${userId}`);
 
 // Payment API requests
 
-export const initiatePayment = (paymentData) => api.post('/payments/initiate', paymentData);
+export const initiatePayment = (paymentData) => api.post('/initiate', paymentData);
 
 export const verifyPayment = (paymentId, verificationData) => api.post(`/payments/verify/${paymentId}`, verificationData);
 
