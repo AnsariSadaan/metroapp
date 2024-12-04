@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { initiatePayment } from '../api.js'; // Assuming this is where your API functions are defined
+import Logout from './Logout.jsx';
 
 const metroData = [
     {
@@ -28,8 +29,11 @@ const Dashboard = () => {
     const [destination, setDestination] = useState('');
     const [price, setPrice] = useState(0);
     const [stations, setStations] = useState([]);
-
+    const token = localStorage.getItem('token');
     useEffect(() => {
+        if(!token){
+            window.location.href = '/login';
+        }
         if (selectedLine) {
             const lineData = metroData.find(line => line.line === selectedLine);
             setStations(lineData ? lineData.stations : []);
@@ -41,10 +45,9 @@ const Dashboard = () => {
     const calculatePrice = () => {
         const sourceStation = stations.find(station => station.name === source);
         const destinationStation = stations.find(station => station.name === destination);
-
         if (sourceStation && destinationStation) {
             const distance = Math.abs(destinationStation.distanceFromStart - sourceStation.distanceFromStart);
-            const price = distance * 10; // Example: ₹10 per km
+            const price = distance * 10; // e.g: ₹10 per km
             setPrice(price);
         } else {
             setPrice(0);
@@ -56,15 +59,14 @@ const Dashboard = () => {
             alert('Please select valid source, destination, and calculate the price before proceeding.');
             return;
         }
-
         try {
             const paymentData = {
                 source,
                 destination,
-                amount: price,
+                price,
             };
-
             const response = await initiatePayment(paymentData);
+            console.log(response.data);
             alert(`Payment successful! Your ticket token: ${response.data.ticket.token}`);
         } catch (error) {
             console.error('Payment error:', error);
@@ -117,6 +119,10 @@ const Dashboard = () => {
             {price > 0 && <p>Price: ₹{price}</p>}
 
             <button onClick={handlePayment}>Proceed to Payment</button>
+
+            <div>
+                <button> <Logout/></button>
+            </div>
         </div>
     );
 };

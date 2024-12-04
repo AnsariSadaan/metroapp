@@ -22,8 +22,8 @@ const userLogin = async (req ,res)=> {
             const token = JWT.sign({ _id: user._id }, process.env.TOKEN_SECRET_KEY, { expiresIn: '7d' });
             
             res.cookie('token', token, {
-                httpOnly: true,  // Prevent access to the cookie from JavaScript
-                secure: process.env.NODE_ENV === 'production',  // Only send cookie over HTTPS in production
+                httpOnly: true, 
+                secure: process.env.NODE_ENV === 'production',  
             });
 
             res.status(200).json({
@@ -34,6 +34,7 @@ const userLogin = async (req ,res)=> {
                     _id: user._id,    
                     name: user.name,
                     email: user.email,
+                    cookies: user.cookies,
                 }
             });
     } catch (error) {

@@ -3,8 +3,7 @@ import mongoose from 'mongoose';
 const ticketSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // Reference to User collection
-        ref: 'User',
-        required: true,
+        ref: 'User'
     },
     source: {
         type: String,
@@ -47,6 +46,6 @@ ticketSchema.pre('save', function (next) {
     next();
 });
 
-const Ticket = mongoose.model('Ticket', ticketSchema);
+export const Ticket = mongoose.model('Ticket', ticketSchema);
 
-export { Ticket };
+

@@ -7,12 +7,14 @@ import { loginUser } from '../api';
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (isLoggedIn === true) {
-    //         navigate('/');
-    //     }
-    // }, [isLoggedIn, navigate])
+    const token = localStorage.getItem('token');
+    useEffect(() => {
+        if (token === true) {
+            navigate('/');
+        }else {
+            navigate('/login');
+        }
+    }, [token])
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

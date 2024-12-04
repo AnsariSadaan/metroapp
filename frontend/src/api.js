@@ -21,16 +21,21 @@ export default api; // Export api as the default export
 // Auth API requests
 export const registerUser = (userData) => api.post('/register', userData);
 export const loginUser = (userData) => api.post('/login', userData);
+export const logoutUser = (userData) => api.post('/logout', userData);
 
 // Ticket API requests
-export const purchaseTicket = (ticketData) => api.post('/tickets', ticketData);
-export const fetchUserTickets = (userId) => api.get(`/tickets/user/${userId}`);
+// export const purchaseTicket = (ticketData) => api.post('/tickets', ticketData);
+// export const fetchUserTickets = (userId) => api.get(`/tickets/user/${userId}`);
 
 // Payment API requests
 
-export const initiatePayment = (paymentData) => api.post('/initiate', paymentData);
+export const initiatePayment = (paymentData) => api.post('/buy-ticket', paymentData, {
+    headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+});
 
-export const verifyPayment = (paymentId, verificationData) => api.post(`/payments/verify/${paymentId}`, verificationData);
 
 // User API requests
-export const fetchUserProfile = () => api.get('/profile');
+// export const fetchUserProfile = () => api.get('/profile');
