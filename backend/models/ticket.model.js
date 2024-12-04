@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const ticketSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // Reference to User collection
-        ref: 'User'
+        ref: 'User',
     },
     source: {
         type: String,

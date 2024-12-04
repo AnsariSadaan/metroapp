@@ -23,12 +23,6 @@ export const registerUser = (userData) => api.post('/register', userData);
 export const loginUser = (userData) => api.post('/login', userData);
 export const logoutUser = (userData) => api.post('/logout', userData);
 
-// Ticket API requests
-// export const purchaseTicket = (ticketData) => api.post('/tickets', ticketData);
-// export const fetchUserTickets = (userId) => api.get(`/tickets/user/${userId}`);
-
-// Payment API requests
-
 export const initiatePayment = (paymentData) => api.post('/buy-ticket', paymentData, {
     headers: {
         'Content-Type': 'application/json',
@@ -36,6 +30,3 @@ export const initiatePayment = (paymentData) => api.post('/buy-ticket', paymentD
     }
 });
 
-
-// User API requests
-// export const fetchUserProfile = () => api.get('/profile');
