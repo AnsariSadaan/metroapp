@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { initiatePayment } from '../api.js'; // API call
 import Logout from './Logout.jsx';
+import MyTickets from './MyTickets.jsx';
 
 const metroData = [
     {
@@ -70,6 +71,10 @@ const Dashboard = () => {
             const response = await initiatePayment(paymentData);
             setSuccess(`Payment successful! Ticket Token: ${response.data.ticket.token}`);
             setError('');
+            setSelectedLine('');
+            setSource('');
+            setDestination('');
+            setPrice(0);
         } catch (err) {
             setError('An error occurred during payment. Please try again.');
             console.error(err);
@@ -153,6 +158,9 @@ const Dashboard = () => {
         </div>
             <div className="mt-6 flex justify-center">
                 <Logout />
+            </div>
+            <div className="mt-6 flex justify-center">
+                <MyTickets />
             </div>
         </>
     );
