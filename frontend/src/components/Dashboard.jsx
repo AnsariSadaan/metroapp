@@ -157,9 +157,6 @@ const Dashboard = () => {
 
         </div>
             <div className="mt-6 flex justify-center">
-                <Logout />
-            </div>
-            <div className="mt-6 flex justify-center">
                 <MyTickets />
             </div>
         </>
@@ -167,3 +164,7 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+
+

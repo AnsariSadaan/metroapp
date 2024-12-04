@@ -26,7 +26,7 @@ const ticketSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Active', 'Cancelled', 'Completed'], // Track ticket status
+        enum: ['Active', 'Cancelled', 'Completed', 'In Journey'], // Track ticket status
         default: 'Active',
     },
     ticketToken: {
