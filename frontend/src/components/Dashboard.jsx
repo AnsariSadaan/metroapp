@@ -1,8 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import { initiatePayment } from '../api.js'; // API call
-import Logout from './Logout.jsx';
-import MyTickets from './MyTickets.jsx';
 
 const metroData = [
     {
@@ -84,8 +81,7 @@ const Dashboard = () => {
     return (
         <>
         <div className="p-6 max-w-lg mx-auto bg-white shadow-md rounded-lg">
-            <h1 className="text-2xl font-bold mb-6 text-center">Metro Ticket Booking</h1>
-
+            <h1 className="text-2xl font-bold mb-6 text-center">Book Tickets</h1>
             <div className="mb-4">
                 <label className="block text-gray-700 mb-2">Select Line:</label>
                 <select
@@ -154,14 +150,7 @@ const Dashboard = () => {
 
             {error && <p className="mt-4 text-red-500">{error}</p>}
             {success && <p className="mt-4 text-green-500">{success}</p>}
-
         </div>
-            <div className="mt-6 flex justify-center">
-                <Logout />
-            </div>
-            <div className="mt-6 flex justify-center">
-                <MyTickets />
-            </div>
         </>
     );
 };

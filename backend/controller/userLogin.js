@@ -13,7 +13,7 @@ const userLogin = async (req ,res)=> {
         }
         const user = await User.findOne({email});
         if(!user){
-            return res.status(422).json({message: "Please Enter Password", error: true});
+            return res.status(422).json({message: "User not found", error: true});
         }
         const checkPassword = await bycrptjs.compare(password, user.password);
         if(!checkPassword){
@@ -25,7 +25,6 @@ const userLogin = async (req ,res)=> {
                 httpOnly: true, 
                 secure: process.env.NODE_ENV === 'production',  
             });
-
             res.status(200).json({
                 success: true,
                 message: "Login Successfully",

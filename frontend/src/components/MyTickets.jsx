@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import ReactQrcode from 'react-qr-code';
+// import { initiatePayment } from '../api';
 const MyTickets = () => {
     const [tickets, setTickets] = useState([]);
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const MyTickets = () => {
             try {
                 const token = localStorage.getItem('token');
                 if (!token) {
-                    navigate('/login'); // Redirect to login if not authenticated
+                    navigate('/login');
                     return;
                 }
 
@@ -41,13 +42,17 @@ const MyTickets = () => {
             {tickets.length === 0 ? (
                 <p className="text-center text-gray-500">You have no booked tickets.</p>
             ) : (
-                <div>
+                <div className=''>
                     {tickets.map((ticket) => (
-                        <div key={ticket.ticketToken} className="mb-4 p-4 bg-gray-100 rounded-lg shadow-sm">
+                        <div key={ticket.ticketToken} className="mb-4 p-4 border-l-4 border-indigo-400 bg-gray-100 rounded-lg shadow-sm">
                             <h2 className="text-xl font-semibold">{ticket.source} → {ticket.destination}</h2>
                             <p className="text-gray-600">Price: ₹{ticket.price}</p>
                             <p className="text-gray-500">Ticket Token: {ticket.ticketToken}</p>
+                            <p className="text-gray-500">Status: {ticket.status}</p>
                             <p className="text-sm text-gray-400">Date: {new Date(ticket.issuedAt).toDateString()}</p>
+                            <div className='flex justify-center'>
+                                <p><ReactQrcode value={JSON.stringify(ticket)} /></p>
+                            </div>
                         </div>
                     ))}
                 </div>

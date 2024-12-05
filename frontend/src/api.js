@@ -30,3 +30,5 @@ export const initiatePayment = (paymentData) => api.post('/buy-ticket', paymentD
     }
 });
 
+export const startJourney = (journey) => api.post('/start-journey', journey);
+export const completeJourney = (journey) => api.post('/complete-journey', journey);
