@@ -25,18 +25,24 @@ const Home = () => {
         >
           Book Ticket
         </button>
-        <button className={`py-2 px-4 rounded ${
+        <button
+          className={`py-2 px-4 rounded ${
             currentView === "viewTicket"
               ? "bg-blue-500 text-white"
               : "bg-gray-200"
-          }`} onClick={() => hanldeChangeView("viewTicket")}>
-          view Ticket
+          }`}
+          onClick={() => hanldeChangeView("viewTicket")}
+        >
+          View Ticket
         </button>
-        <button className={`py-2 px-4 rounded ${
+        <button
+          className={`py-2 px-4 rounded ${
             currentView === "startJourney"
               ? "bg-blue-500 text-white"
               : "bg-gray-200"
-          }`} onClick={() => hanldeChangeView("startJourney")}>
+          }`}
+          onClick={() => hanldeChangeView("startJourney")}
+        >
           Start Journey
         </button>
         <button

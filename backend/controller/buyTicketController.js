@@ -14,7 +14,18 @@ const buyTicket = async (req, res) => {
 
   try {
     const ticketToken = uuidv4(); // Unique ticket ID
-    const saveTicket = { userId, ticketToken, source, destination, price };
+    const issuedAt = new Date();
+    console.log(issuedAt);
+    const expiredAt = new Date(issuedAt.getTime() + 1 * 60 * 1000);
+    const saveTicket = {
+      userId,
+      ticketToken,
+      source,
+      destination,
+      price,
+      issuedAt,
+      expiredAt,
+    };
 
     // Save ticket to database
     const ticket = new Ticket(saveTicket);
@@ -29,11 +40,16 @@ const buyTicket = async (req, res) => {
         source,
         destination,
         price,
-        issuedAt: ticket.issuedAt,
+        issuedAt,
+        expiredAt,
       },
     });
   } catch (error) {
-    res.status(500).json({ success: false, message: "Payment failed", error });
+    res.status(500).json({
+      success: false,
+      message: "Payment failed",
+      error: error.message,
+    });
   }
 };
 

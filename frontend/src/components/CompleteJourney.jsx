@@ -19,7 +19,7 @@ const CompleteJourney = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="mt-6 flex justify-center">
       <div className="flex min-h-full shadow-md w-2/4 flex-col justify-center px-6 py-6 lg:px-8">
         <h1 className="text-lg font-bold text-center">Complete Journey</h1>
         <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -54,7 +54,7 @@ const CompleteJourney = () => {
                 id="destination"
                 value={exitStation}
                 onChange={(e) => setExitStation(e.target.value)}
-                placeholder="Enter Source Station"
+                placeholder="Enter Destination Station"
                 required
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
