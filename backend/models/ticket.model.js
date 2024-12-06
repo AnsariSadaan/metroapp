@@ -28,12 +28,12 @@ const ticketSchema = new mongoose.Schema(
     expiredAt: {
       type: Date,
       default: function () {
-        return new Date(this.issuedAt.getTime() + 1 * 60 * 1000);
+        return new Date(this.issuedAt.getTime() + 1 * 60 * 60 * 1000);
       },
     },
     status: {
       type: String,
-      enum: ["Active", "Cancelled", "Completed", "In Journey"], // Track ticket status
+      enum: ["Active", "Cancelled", "Completed", "In Journey", "Expired"], // Track ticket status
       default: "Active",
     },
     ticketToken: {
@@ -54,6 +54,14 @@ ticketSchema.pre("save", function (next) {
       .toString(36)
       .substr(2, 9)
       .toUpperCase()}`;
+  }
+  next();
+});
+
+ticketSchema.pre("save", function (next) {
+  const currentTime = new Date();
+  if (this.expiredAt < currentTime && this.status === "Active") {
+    this.status = "Expired";
   }
   next();
 });

@@ -39,30 +39,35 @@ const MyTickets = () => {
   }, [navigate]);
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white shadow-md rounded-lg">
+    <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center">My Booked Tickets</h1>
 
       {tickets.length === 0 ? (
         <p className="text-center text-gray-500">You have no booked tickets.</p>
       ) : (
-        <div className="">
+        <div>
           {tickets.map((ticket) => (
             <div
               key={ticket.ticketToken}
-              className="mb-4 p-4 border-l-4 border-indigo-400 bg-gray-100 rounded-lg shadow-sm"
+              className="flex mb-4 p-4 border-l-4 border-indigo-400 bg-gray-100 rounded-lg shadow-sm"
             >
-              <h2 className="text-xl font-semibold">
+              <h2 className="text-lg font-semibold">
                 {ticket.source} → {ticket.destination}
               </h2>
-              <p className="text-gray-600">Price: ₹{ticket.price}</p>
-              <p className="text-gray-500">
-                Ticket Token: {ticket.ticketToken}
-              </p>
-              <p className="text-gray-500">Status: {ticket.status}</p>
-              <p className="text-sm text-gray-400">
-                Date: {new Date(ticket.issuedAt).toDateString()}
-              </p>
-              <div className="flex justify-center">
+              <div key={ticket.ticketToken}>
+                <p className="text-gray-600">Price: ₹{ticket.price}</p>
+                <p className="text-gray-500">
+                  Ticket Token: {ticket.ticketToken}
+                </p>
+                <p className="text-gray-500">Status: {ticket.status}</p>
+                <p className="text-sm text-gray-400">
+                  Issued Time: {new Date(ticket.issuedAt).toLocaleTimeString()}
+                </p>
+                <p className="text-sm text-gray-400">
+                  Expire Time: {new Date(ticket.expiredAt).toLocaleTimeString()}
+                </p>
+              </div>
+              <div className="">
                 <p>
                   <ReactQrcode
                     className="size-40"

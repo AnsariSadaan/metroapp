@@ -18,8 +18,11 @@ const startJourney = async (req, res) => {
 
     const currentTime = new Date();
     if (currentTime > ticket.expiredAt) {
+      ticket.status = "Expired";
+      await ticket.save();
       return res.status(400).json({ message: "ticket is expired" });
     }
+
     const metroLine = metroData.find(
       (line) =>
         line.stations.some((station) => station.name === ticket.source) &&

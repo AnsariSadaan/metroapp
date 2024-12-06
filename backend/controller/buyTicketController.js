@@ -16,7 +16,7 @@ const buyTicket = async (req, res) => {
     const ticketToken = uuidv4(); // Unique ticket ID
     const issuedAt = new Date();
     console.log(issuedAt);
-    const expiredAt = new Date(issuedAt.getTime() + 1 * 60 * 1000);
+    const expiredAt = new Date(issuedAt.getTime() + 1 * 60 * 60 * 1000);
     const saveTicket = {
       userId,
       ticketToken,
